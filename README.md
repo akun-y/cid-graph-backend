@@ -89,7 +89,8 @@ Project information and existing API
 ```
 Swagger doc
 
-![image](https://i.imgur.com/bVRLTP4.jpg)
+![image](https://user-images.githubusercontent.com/3693411/175558495-a0649cc5-174b-4727-a57d-1839d8143aaf.png)
+
 
 ## Features
 

@@ -481,34 +481,28 @@ var doc = `{
         },
         "/api/v1/user": {
             "post": {
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
                 "summary": "Add  user",
                 "parameters": [
                     {
-                        "description": "Name",
-                        "name": "name",
+                        "type": "string",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Add user",
+                        "name": "json",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "State",
-                        "name": "state",
-                        "in": "body",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "description": "CreatedBy",
-                        "name": "created_by",
-                        "in": "body",
-                        "schema": {
-                            "type": "integer"
+                            "$ref": "#/definitions/v1.AddUserForm"
                         }
                     }
                 ],
@@ -530,11 +524,21 @@ var doc = `{
         },
         "/api/v1/user/{id}": {
             "get": {
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
                 "summary": "Get a single user",
                 "parameters": [
+                    {
+                        "type": "string",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
                     {
                         "type": "integer",
                         "description": "ID",
@@ -559,11 +563,21 @@ var doc = `{
                 }
             },
             "put": {
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
                 "summary": "Update  user",
                 "parameters": [
+                    {
+                        "type": "string",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
                     {
                         "type": "integer",
                         "description": "ID",
@@ -614,11 +628,21 @@ var doc = `{
                 }
             },
             "delete": {
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
                 "summary": "Delete  user",
                 "parameters": [
+                    {
+                        "type": "string",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
                     {
                         "type": "integer",
                         "description": "ID",
@@ -645,11 +669,21 @@ var doc = `{
         },
         "/api/v1/users": {
             "get": {
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
-                "summary": "Get user",
+                "summary": "Get users",
                 "parameters": [
+                    {
+                        "type": "string",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
                     {
                         "type": "string",
                         "description": "Name",
@@ -681,19 +715,21 @@ var doc = `{
         },
         "/auth": {
             "post": {
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
-                    "application/json",
-                    "text/xml"
+                    "application/json"
                 ],
                 "summary": "Post Auth",
                 "parameters": [
                     {
-                        "description": "auth",
-                        "name": "username,password",
+                        "description": "Auth Get Token",
+                        "name": "json",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/api.AUTH"
                         }
                     }
                 ],
@@ -715,6 +751,23 @@ var doc = `{
         }
     },
     "definitions": {
+        "api.AUTH": {
+            "type": "object",
+            "properties": {
+                "kind": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
         "app.Response": {
             "type": "object",
             "properties": {
@@ -768,6 +821,43 @@ var doc = `{
                 },
                 "version": {
                     "type": "integer"
+                }
+            }
+        },
+        "v1.AddUserForm": {
+            "type": "object",
+            "properties": {
+                "cids": {
+                    "type": "string"
+                },
+                "email": {
+                    "description": "Email   string ` + "`" + `form:\"email\" valid:\"Required;Email;MaxSize(100)\"` + "`" + `",
+                    "type": "string"
+                },
+                "github": {
+                    "type": "string"
+                },
+                "linkin": {
+                    "type": "string"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "description": "Phone   string ` + "`" + `form:\"phone\" valid:\"MaxSize(100);Phone\"` + "`" + `",
+                    "type": "string"
+                },
+                "state": {
+                    "type": "integer"
+                },
+                "wallet": {
+                    "type": "string"
+                },
+                "website": {
+                    "type": "string"
                 }
             }
         }

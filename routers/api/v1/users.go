@@ -14,8 +14,10 @@ import (
 	"go-gin-example/m/v2/service/user_service"
 )
 
-// @Summary Get user
+// @Summary Get users
+// @Accept json
 // @Produce  json
+// @Param token header string true "token"
 // @Param name query string false "Name"
 // @Param state query int false "State"
 // @Success 200 {object} app.Response
@@ -54,7 +56,9 @@ func GetUsers(c *gin.Context) {
 }
 
 // @Summary Get a single user
+// @Accept json
 // @Produce  json
+// @Param token header string true "token"
 // @Param id path int true "ID"
 // @Success 200 {object} app.Response
 // @Failure 500 {object} app.Response
@@ -107,10 +111,10 @@ type AddUserForm struct {
 }
 
 // @Summary Add  user
+// @Accept json
 // @Produce  json
-// @Param name body string true "Name"
-// @Param state body int false "State"
-// @Param created_by body int false "CreatedBy"
+// @Param token header string true "token"
+// @Param json body AddUserForm true "Add user"
 // @Success 200 {object} app.Response
 // @Failure 500 {object} app.Response
 // @Router /api/v1/user [post]
@@ -165,7 +169,9 @@ type EditUserForm struct {
 }
 
 // @Summary Update  user
+// @Accept json
 // @Produce  json
+// @Param token header string true "token"
 // @Param id path int true "ID"
 // @Param name body string true "Name"
 // @Param state body int false "State"
@@ -212,7 +218,9 @@ func EditUser(c *gin.Context) {
 }
 
 // @Summary Delete  user
+// @Accept json
 // @Produce  json
+// @Param token header string true "token"
 // @Param id path int true "ID"
 // @Success 200 {object} app.Response
 // @Failure 500 {object} app.Response

@@ -1,4 +1,15 @@
 definitions:
+  api.AUTH:
+    properties:
+      kind:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
   app.Response:
     properties:
       code:
@@ -35,6 +46,31 @@ definitions:
         type: string
       version:
         type: integer
+    type: object
+  v1.AddUserForm:
+    properties:
+      cids:
+        type: string
+      email:
+        description: Email   string `form:"email" valid:"Required;Email;MaxSize(100)"`
+        type: string
+      github:
+        type: string
+      linkin:
+        type: string
+      meta:
+        type: string
+      name:
+        type: string
+      phone:
+        description: Phone   string `form:"phone" valid:"MaxSize(100);Phone"`
+        type: string
+      state:
+        type: integer
+      wallet:
+        type: string
+      website:
+        type: string
     type: object
 info:
   contact: {}
@@ -341,23 +377,20 @@ paths:
       summary: Import cid tag
   /api/v1/user:
     post:
+      consumes:
+      - application/json
       parameters:
-      - description: Name
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: Add user
         in: body
-        name: name
+        name: json
         required: true
         schema:
-          type: string
-      - description: State
-        in: body
-        name: state
-        schema:
-          type: integer
-      - description: CreatedBy
-        in: body
-        name: created_by
-        schema:
-          type: integer
+          $ref: '#/definitions/v1.AddUserForm'
       produces:
       - application/json
       responses:
@@ -372,7 +405,14 @@ paths:
       summary: Add  user
   /api/v1/user/{id}:
     delete:
+      consumes:
+      - application/json
       parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
       - description: ID
         in: path
         name: id
@@ -391,7 +431,14 @@ paths:
             $ref: '#/definitions/app.Response'
       summary: Delete  user
     get:
+      consumes:
+      - application/json
       parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
       - description: ID
         in: path
         name: id
@@ -410,7 +457,14 @@ paths:
             $ref: '#/definitions/app.Response'
       summary: Get a single user
     put:
+      consumes:
+      - application/json
       parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
       - description: ID
         in: path
         name: id
@@ -447,7 +501,14 @@ paths:
       summary: Update  user
   /api/v1/users:
     get:
+      consumes:
+      - application/json
       parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
       - description: Name
         in: query
         name: name
@@ -467,19 +528,20 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
-      summary: Get user
+      summary: Get users
   /auth:
     post:
+      consumes:
+      - application/json
       parameters:
-      - description: auth
+      - description: Auth Get Token
         in: body
-        name: username,password
+        name: json
         required: true
         schema:
-          type: string
+          $ref: '#/definitions/api.AUTH'
       produces:
       - application/json
-      - text/xml
       responses:
         "200":
           description: OK

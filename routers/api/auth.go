@@ -11,7 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type auth struct {
+type AUTH struct {
 	Username string  `valid:"Required; MaxSize(50)"`
 	Password string  `valid:"Required; MaxSize(50)"`
 	Kind     string  `json:"kind,omitempty"`
@@ -24,22 +24,22 @@ type auth struct {
 // }
 
 // @Summary Post Auth
-// @Produce json,xml
-// @Param username,password body string true "auth"
-// @Example {"username:":"cid","password:":"cid1234"}
+// @Accept json
+// @Produce  json
+// @Param json body AUTH true "Auth Get Token"
 // @Success 200 {object} app.Response
 // @Failure 500 {object} app.Response
 // @Router /auth [post]
 func GetAuth(c *gin.Context) {
 	appG := app.Gin{C: c}
-	user := auth{}
+	user := AUTH{}
 	c.BindJSON(&user)
 
 	valid := validation.Validation{}
 
 	username := user.Username
 	password := user.Password
-	a := auth{Username: username, Password: password}
+	a := AUTH{Username: username, Password: password}
 	ok, _ := valid.Valid(&a)
 
 	if !ok {

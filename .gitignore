@@ -7,3 +7,4 @@ runtime/*
 .vscode/targets.log
 .vscode/dryrun.log
 .vscode/configurationCache.log
+conf/app.ini

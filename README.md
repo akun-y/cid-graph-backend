@@ -104,3 +104,10 @@ Swagger doc
 - App configurable
 - Cron
 - Redis
+
+## Test:
+ - 1.auth to get token:POST /auth  (username:cid,password:cid1234)
+ - 2.adduser: POST /api/v1/user
+ - 3.add graph:POST /api/v1/graph
+ - 4.update graph:PUT /api/v1/graph/:graph_id
+ - 5.get graph:GET /api/v1/graph/2

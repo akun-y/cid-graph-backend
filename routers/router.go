@@ -2,6 +2,7 @@ package routers
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -15,11 +16,26 @@ import (
 	"go-gin-example/m/v2/pkg/upload"
 	"go-gin-example/m/v2/routers/api"
 	v1 "go-gin-example/m/v2/routers/api/v1"
+
+	"github.com/gin-contrib/cors"
 )
 
 // InitRouter initialize routing information
 func InitRouter() *gin.Engine {
+	
 	r := gin.New()
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"*"},
+		AllowMethods:     []string{"PUT", "PATCH","GET", "POST", "DELETE"},
+		AllowHeaders:     []string{"Origin"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		AllowOriginFunc: func(origin string) bool {
+		  return origin == "https://github.com"
+		},
+		MaxAge: 12 * time.Hour,
+	  }))
+
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 
@@ -28,6 +44,7 @@ func InitRouter() *gin.Engine {
 	r.StaticFS("/qrcode", http.Dir(qrcode.GetQrCodeFullPath()))
 
 	r.POST("/auth", api.GetAuth)
+	r.GET("/total/info",api.GetTotalInfo)
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	r.POST("/upload", api.UploadImage)
 

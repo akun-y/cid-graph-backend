@@ -552,4 +552,20 @@ paths:
           schema:
             $ref: '#/definitions/app.Response'
       summary: Post Auth
+  /total/info:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: Get total/info
 swagger: "2.0"

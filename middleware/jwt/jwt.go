@@ -3,8 +3,8 @@ package jwt
 import (
 	"net/http"
 
-	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
+	"github.com/golang-jwt/jwt"
 
 	"go-gin-example/m/v2/pkg/e"
 	"go-gin-example/m/v2/pkg/util"

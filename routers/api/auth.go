@@ -5,6 +5,7 @@ import (
 	"go-gin-example/m/v2/pkg/e"
 	"go-gin-example/m/v2/pkg/util"
 	"go-gin-example/m/v2/service/user_service"
+	"math/rand"
 	"net/http"
 
 	"github.com/astaxie/beego/validation"
@@ -68,5 +69,22 @@ func GetAuth(c *gin.Context) {
 
 	appG.Response(http.StatusOK, e.SUCCESS, map[string]string{
 		"token": token,
+	})
+}
+
+// @Summary Get total/info
+// @Accept json
+// @Produce  json
+// @Success 200 {object} app.Response
+// @Failure 500 {object} app.Response
+// @Router /total/info [get]
+func GetTotalInfo(c *gin.Context) {
+	appG := app.Gin{C: c}
+	
+
+	appG.Response(http.StatusOK, e.SUCCESS, map[string]interface{}{
+		"total_unque_cids": 1102324+rand.Intn(100),
+		"total_graph_cids": 934+rand.Intn(100),
+		"total_data_stored": 234+rand.Intn(100),
 	})
 }

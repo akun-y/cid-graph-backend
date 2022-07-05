@@ -18,6 +18,25 @@ definitions:
       msg:
         type: string
     type: object
+  v1.AddCIDForm:
+    properties:
+      cid:
+        type: string
+      desc:
+        type: string
+      length:
+        type: integer
+      name:
+        type: string
+      size:
+        type: integer
+      state:
+        type: integer
+      type:
+        type: string
+      version:
+        type: integer
+    type: object
   v1.AddGraphForm:
     properties:
       cid:
@@ -82,6 +101,95 @@ info:
   title: IPFS CID Graph API
   version: "1.0"
 paths:
+  /api/v1/cid:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: AddCIDForm
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/v1.AddCIDForm'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: Add CID
+  /api/v1/cid/{id}:
+    get:
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: Get a single cid
+  /api/v1/cids:
+    get:
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: TagID
+        in: query
+        name: tag_id
+        type: integer
+      - description: State
+        in: query
+        name: state
+        type: integer
+      - description: Page
+        in: query
+        name: page
+        type: integer
+      - description: CreatedBy
+        in: query
+        name: created_by
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: Get multiple cids
   /api/v1/graph:
     post:
       consumes:
@@ -204,6 +312,10 @@ paths:
       - description: State
         in: query
         name: state
+        type: integer
+      - description: Page
+        in: query
+        name: page
         type: integer
       - description: CreatedBy
         in: query

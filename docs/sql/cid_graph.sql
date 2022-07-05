@@ -37,6 +37,25 @@ CREATE TABLE `graph_data` (
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT = 'CID管理';
 -- ----------------------------
+-- Table structure for cid_data
+-- ----------------------------
+DROP TABLE IF EXISTS `graph_cid`;
+CREATE TABLE `graph_cid` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ipfs_cid` varchar(255) COMMENT 'ipfs cid',
+  `size` int(10) unsigned DEFAULT '0' COMMENT '文件大小',
+  `length` int(10) unsigned DEFAULT '0' COMMENT '修改时间',
+  `type` varchar(32) DEFAULT '' COMMENT '文件类型',
+  `version` int(10) unsigned DEFAULT '0' COMMENT '版本',
+  `publish_time` int(10) unsigned DEFAULT '0' COMMENT '发布时间',
+  `owner_id` int(10) unsigned DEFAULT '0' COMMENT '所有者',
+  `modified_on` int(10) unsigned DEFAULT '0' COMMENT '修改时间',
+  `created_on` int(10) unsigned DEFAULT '0' COMMENT '新建时间',
+  `deleted_on` int(10) unsigned DEFAULT '0',
+  `state` tinyint(3) unsigned DEFAULT '1' COMMENT '删除时间',
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT = 'CID管理';
+-- ----------------------------
 -- Table structure for graph_auth
 -- ----------------------------
 DROP TABLE IF EXISTS `graph_auth`;

@@ -61,6 +61,7 @@ func GetGraphByID(c *gin.Context) {
 // @Param token header string true "token"
 // @Param tag_id query int false "TagID"
 // @Param state query int false "State"
+// @Param page query int false "Page"
 // @Param created_by query int false "CreatedBy"
 // @Success 200 {object} app.Response
 // @Failure 500 {object} app.Response
@@ -346,7 +347,7 @@ const (
 	QRCODE_URL = "https://github.com/akun-y/blog/blob/master/github-qr.png"
 )
 
-func GenerateCIDPoster(c *gin.Context) {
+func GenerateGraphPoster(c *gin.Context) {
 	appG := app.Gin{C: c}
 	CID := &graph_service.GRAPH{}
 	qr := qrcode.NewQrCode(QRCODE_URL, 300, 300, qr.M, qr.Auto)

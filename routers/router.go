@@ -68,7 +68,11 @@ func InitRouter() *gin.Engine {
 		apiv1.POST("/graph", v1.AddGraph)
 		apiv1.PUT("/graph/:id", v1.EditGraphByID)
 		apiv1.DELETE("/graph/:id", v1.DeleteGraph)
-		apiv1.POST("/graph/poster/generate", v1.GenerateCIDPoster)
+		apiv1.POST("/graph/poster/generate", v1.GenerateGraphPoster)
+
+		apiv1.GET("/cids", v1.GetCIDs)
+		apiv1.GET("/cid/:id", v1.GetCIDByID)
+		apiv1.POST("/cid", v1.AddCID)
 	}
 
 	return r

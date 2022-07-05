@@ -44,6 +44,14 @@ var MsgFlags = map[int]string{
 	ERROR_UPLOAD_SAVE_IMAGE_FAIL:    "保存图片失败",
 	ERROR_UPLOAD_CHECK_IMAGE_FAIL:   "检查图片失败",
 	ERROR_UPLOAD_CHECK_IMAGE_FORMAT: "校验图片错误，图片格式或大小有问题",
+
+	ERROR_GET_CID_FAIL: "Get CID failure",
+	ERROR_CHECK_EXIST_CID_FAIL: "Check if the CID exists failed",
+	ERROR_NOT_EXIST_CID: "This CID does not exist",
+	ERROR_COUNT_CID_FAIL: "Count CID failure",
+	ERROR_GET_CIDS_FAIL: "Get CIDs failure",
+	ERROR_EXIST_CID: "CID is exist",
+	ERROR_ADD_CID_FAIL: "Add CID failure",
 }
 
 // GetMsg get error information based on Code

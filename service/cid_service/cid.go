@@ -11,7 +11,6 @@ import (
 
 type CID struct {
 	ID    int
-	TagID int
 	Name  string
 	Desc  string
 
@@ -23,8 +22,6 @@ type CID struct {
 	Metas     string
 
 	CID         string
-	CIDAuthor int
-	Owner       int
 
 	PageNum  int
 	PageSize int
@@ -33,7 +30,6 @@ type CID struct {
 
 func (a *CID) Add() error {
 	CID := map[string]interface{}{
-		"tag_id": a.TagID,
 		"name":   a.Name,
 		"desc":   a.Desc,
 
@@ -45,8 +41,6 @@ func (a *CID) Add() error {
 		"metas":     a.Metas,
 
 		"cid":          a.CID,
-		"author": a.CIDAuthor,
-		"owner":        a.Owner,
 	}
 
 	if err := models.AddCID(CID); err != nil {
@@ -86,9 +80,7 @@ func (a *CID) GetAll() ([]*models.GRAPH_cid, error) {
 	)
 
 	cache := cache_service.CID{
-		TagID: a.TagID,
-		//State: a.State,
-
+		State: a.State,
 		PageNum:  a.PageNum,
 		PageSize: a.PageSize,
 	}
@@ -125,16 +117,32 @@ func (a *CID) ExistByCID() (bool, error) {
 func (a *CID) Count() (int, error) {
 	return models.GetCIDTotal(a.getMaps())
 }
+func (a *CID) Total() (int) {
+	return models.CIDTotal()
+}
+
 
 func (a *CID) getMaps() map[string]interface{} {
 	maps := make(map[string]interface{})
 	maps["deleted_on"] = 0
-	// if a.State != -1 {
-	// 	maps["state"] = a.State
-	// }
-	if a.TagID != -1 {
-		maps["tag_id"] = a.TagID
+	if a.State != -1 {
+		maps["state"] = a.State
 	}
+	if a.ID != -1 {
+		maps["ID"] = a.ID
+	}
+	if a.Size != -1 {
+		maps["Size"] = a.Size
+	}	
+	if len(a.CID) > 0 {
+		maps["CID"] = a.CID
+	}
+	if a.State != -1 {
+		maps["state"] = a.State
+	}
+	// if a.TagID != -1 {
+	// 	maps["tag_id"] = a.TagID
+	// }
 
 	return maps
 }

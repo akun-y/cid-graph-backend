@@ -153,7 +153,9 @@ func (a *GRAPH) ExistByCID() (bool, error) {
 func (a *GRAPH) Count() (int, error) {
 	return models.GetGraphTotal(a.getMaps())
 }
-
+func (a *GRAPH) Total() (int) {
+	return models.GraphTotal()
+}
 func (a *GRAPH) getMaps() map[string]interface{} {
 	maps := make(map[string]interface{})
 	maps["deleted_on"] = 0

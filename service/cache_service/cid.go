@@ -9,8 +9,8 @@ import (
 
 type CID struct {
 	ID    int
-	TagID int
 	State int
+	Total int
 
 	PageNum  int
 	PageSize int
@@ -28,9 +28,6 @@ func (a *CID) GetCIDsKey() string {
 
 	if a.ID > 0 {
 		keys = append(keys, strconv.Itoa(a.ID))
-	}
-	if a.TagID > 0 {
-		keys = append(keys, strconv.Itoa(a.TagID))
 	}
 	if a.State >= 0 {
 		keys = append(keys, strconv.Itoa(a.State))

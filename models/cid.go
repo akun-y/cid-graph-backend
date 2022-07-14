@@ -51,6 +51,14 @@ func GetCIDTotal(maps interface{}) (int, error) {
 
 	return count, nil
 }
+func CIDTotal() (int) {
+	var count int
+	if err := db.Model(&GRAPH_cid{}).Count(&count).Error; err != nil {
+		return -1
+	}
+
+	return count
+}
 
 // GetCIDs gets a list of CIDs based on paging constraints
 func GetCIDs(pageNum int, pageSize int, maps interface{}) ([]*GRAPH_cid, error) {

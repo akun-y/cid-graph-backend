@@ -57,7 +57,6 @@ func GetCIDByID(c *gin.Context) {
 // @Summary Get multiple cids
 // @Produce  json
 // @Param token header string true "token"
-// @Param tag_id query int false "TagID"
 // @Param state query int false "State"
 // @Param page query int false "Page"
 // @Param created_by query int false "CreatedBy"
@@ -87,7 +86,6 @@ func GetCIDs(c *gin.Context) {
 	}
 
 	service := cid_service.CID{
-		TagID:    tagId,
 		State:    state,
 		PageNum:  util.GetPage(c),
 		PageSize: setting.AppSetting.PageSize,

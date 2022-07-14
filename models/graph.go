@@ -23,7 +23,8 @@ type GRAPH_DATA struct {
 	Metas         string    `json:"metas"`
 	IpfsCid       string    `json:"ipfs_cid" gorm:"index"`
 	GraphAuthorID int       `json:"graph_author_id"`
-	Author        GraphUser `json:"author"`
+	Author        GraphUser `gorm:"references:graph_author_id" json:"author"`
+	//GraphAuthorID        GraphUser `gorm:"references:ID"`
 
 	OwnerID int       `json:"owner_id"`
 	Owner   GraphUser `json:"owner"`
@@ -95,7 +96,14 @@ func GetGraph(id int) (*GRAPH_DATA, error) {
 
 	return &record, nil
 }
+func GraphTotal() (int) {
+	var count int
+	if err := db.Model(&GRAPH_DATA{}).Count(&count).Error; err != nil {
+		return -1
+	}
 
+	return count
+}
 // EditGraph modify a single CID
 func EditGraph(id int, data interface{}) error {
 	if err := db.Model(&GRAPH_DATA{}).Where("id = ? AND deleted_on = ? ", id, 0).Updates(data).Error; err != nil {
@@ -119,6 +127,7 @@ func AddGraph(data map[string]interface{}) error {
 		Metas:     data["metas"].(string),
 
 		IpfsCid:       data["cid"].(string),
+		//GraphAuthorID: data["graph_author"].(int),
 		GraphAuthorID: data["graph_author"].(int),
 		OwnerID:       data["owner"].(int),
 		TagID:         data["tag_id"].(int),

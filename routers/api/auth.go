@@ -4,8 +4,9 @@ import (
 	"go-gin-example/m/v2/pkg/app"
 	"go-gin-example/m/v2/pkg/e"
 	"go-gin-example/m/v2/pkg/util"
+	"go-gin-example/m/v2/service/cid_service"
+	"go-gin-example/m/v2/service/graph_service"
 	"go-gin-example/m/v2/service/user_service"
-	"math/rand"
 	"net/http"
 
 	"github.com/astaxie/beego/validation"
@@ -80,11 +81,16 @@ func GetAuth(c *gin.Context) {
 // @Router /total/info [get]
 func GetTotalInfo(c *gin.Context) {
 	appG := app.Gin{C: c}
-	
+	cidService := cid_service.CID{}
+	cids:= cidService.Total()
 
+	graphService := graph_service.GRAPH{}
+	graphs:= graphService.Total()
+
+	total := cids + graphs
 	appG.Response(http.StatusOK, e.SUCCESS, map[string]interface{}{
-		"total_unque_cids": 1102324+rand.Intn(100),
-		"total_graph_cids": 934+rand.Intn(100),
-		"total_data_stored": 234+rand.Intn(100),
+		"total_unque_cids": cids,
+		"total_graph_cids": graphs,
+		"total_data_stored": total,
 	})
 }

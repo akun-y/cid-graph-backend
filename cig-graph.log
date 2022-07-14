@@ -26,3 +26,35 @@
 [GIN-debug] DELETE /api/v1/graph/:id         --> go-gin-example/m/v2/routers/api/v1.DeleteGraph (4 handlers)
 [GIN-debug] POST   /api/v1/graph/poster/generate --> go-gin-example/m/v2/routers/api/v1.GenerateCIDPoster (4 handlers)
 2022/06/25 12:02:00 [info] start http server listening :8000
+2022/07/14 15:37:13 [info] replacing callback `gorm:update_time_stamp` from /mnt/f/yhk/windev/cid.graph/cid-graph-backend/models/models.go:41
+2022/07/14 15:37:13 [info] replacing callback `gorm:update_time_stamp` from /mnt/f/yhk/windev/cid.graph/cid-graph-backend/models/models.go:42
+2022/07/14 15:37:13 [info] replacing callback `gorm:delete` from /mnt/f/yhk/windev/cid.graph/cid-graph-backend/models/models.go:43
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /export/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] HEAD   /export/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] GET    /upload/images/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] HEAD   /upload/images/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] GET    /qrcode/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] HEAD   /qrcode/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (4 handlers)
+[GIN-debug] POST   /auth                     --> go-gin-example/m/v2/routers/api.GetAuth (4 handlers)
+[GIN-debug] GET    /total/info               --> go-gin-example/m/v2/routers/api.GetTotalInfo (4 handlers)
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (4 handlers)
+[GIN-debug] POST   /upload                   --> go-gin-example/m/v2/routers/api.UploadImage (4 handlers)
+[GIN-debug] GET    /api/v1/user/:id          --> go-gin-example/m/v2/routers/api/v1.GetUser (5 handlers)
+[GIN-debug] GET    /api/v1/users             --> go-gin-example/m/v2/routers/api/v1.GetUsers (5 handlers)
+[GIN-debug] POST   /api/v1/user              --> go-gin-example/m/v2/routers/api/v1.AddUser (5 handlers)
+[GIN-debug] PUT    /api/v1/user/:id          --> go-gin-example/m/v2/routers/api/v1.EditUser (5 handlers)
+[GIN-debug] DELETE /api/v1/user/:id          --> go-gin-example/m/v2/routers/api/v1.DeleteUser (5 handlers)
+[GIN-debug] GET    /api/v1/graphs            --> go-gin-example/m/v2/routers/api/v1.GetGraphs (5 handlers)
+[GIN-debug] GET    /api/v1/graph/:id         --> go-gin-example/m/v2/routers/api/v1.GetGraphByID (5 handlers)
+[GIN-debug] POST   /api/v1/graph             --> go-gin-example/m/v2/routers/api/v1.AddGraph (5 handlers)
+[GIN-debug] PUT    /api/v1/graph/:id         --> go-gin-example/m/v2/routers/api/v1.EditGraphByID (5 handlers)
+[GIN-debug] DELETE /api/v1/graph/:id         --> go-gin-example/m/v2/routers/api/v1.DeleteGraph (5 handlers)
+[GIN-debug] POST   /api/v1/graph/poster/generate --> go-gin-example/m/v2/routers/api/v1.GenerateGraphPoster (5 handlers)
+[GIN-debug] GET    /api/v1/cids              --> go-gin-example/m/v2/routers/api/v1.GetCIDs (5 handlers)
+[GIN-debug] GET    /api/v1/cid/:id           --> go-gin-example/m/v2/routers/api/v1.GetCIDByID (5 handlers)
+[GIN-debug] POST   /api/v1/cid               --> go-gin-example/m/v2/routers/api/v1.AddCID (5 handlers)
+2022/07/14 15:37:13 [info] start http server listening 0.0.0.0:8000

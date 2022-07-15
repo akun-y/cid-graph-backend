@@ -121,25 +121,12 @@ func (a *CID) Total() (int) {
 	return models.CIDTotal()
 }
 
-
 func (a *CID) getMaps() map[string]interface{} {
 	maps := make(map[string]interface{})
 	maps["deleted_on"] = 0
-	if a.State != -1 {
-		maps["state"] = a.State
-	}
-	if a.ID != -1 {
-		maps["ID"] = a.ID
-	}
-	if a.Size != -1 {
-		maps["Size"] = a.Size
-	}	
-	if len(a.CID) > 0 {
-		maps["CID"] = a.CID
-	}
-	if a.State != -1 {
-		maps["state"] = a.State
-	}
+	// if a.State != -1 {
+	// 	maps["state"] = a.State
+	// }
 	// if a.TagID != -1 {
 	// 	maps["tag_id"] = a.TagID
 	// }

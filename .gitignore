@@ -8,3 +8,5 @@ runtime/*
 .vscode/dryrun.log
 .vscode/configurationCache.log
 conf/app.ini
+main
+conf/app.ini

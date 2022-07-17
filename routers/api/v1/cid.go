@@ -84,7 +84,7 @@ func GetCIDs(c *gin.Context) {
 		appG.Response(http.StatusBadRequest, e.INVALID_PARAMS, nil)
 		return
 	}
-
+	page := com.StrTo(c.Query("page")).MustInt()
 	service := cid_service.CID{
 		State:    state,
 		PageNum:  util.GetPage(c),
@@ -106,6 +106,9 @@ func GetCIDs(c *gin.Context) {
 	data := make(map[string]interface{})
 	data["lists"] = ipfsCids
 	data["total"] = total
+	data["page"] = page
+	data["page_size"] = service.PageSize
+	data["state"] = service.State
 
 	appG.Response(http.StatusOK, e.SUCCESS, data)
 }

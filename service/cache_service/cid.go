@@ -38,6 +38,8 @@ func (a *CID) GetCIDsKey() string {
 	if a.PageSize > 0 {
 		keys = append(keys, strconv.Itoa(a.PageSize))
 	}
-
+	if a.Total > 0 {
+		keys = append(keys, strconv.Itoa(a.Total))
+	}
 	return strings.Join(keys, "_")
 }

@@ -78,11 +78,12 @@ func (a *CID) GetAll() ([]*models.GRAPH_cid, error) {
 	var (
 		CIDs, cacheCIDs []*models.GRAPH_cid
 	)
-
+	total := a.Total()
 	cache := cache_service.CID{
 		State: a.State,
 		PageNum:  a.PageNum,
 		PageSize: a.PageSize,
+		Total: total,
 	}
 	key := cache.GetCIDsKey()
 	if gredis.Exists(key) {

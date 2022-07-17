@@ -87,7 +87,7 @@ func GetGraphs(c *gin.Context) {
 		appG.Response(http.StatusBadRequest, e.INVALID_PARAMS, nil)
 		return
 	}
-
+	page := com.StrTo(c.Query("page")).MustInt()
 	service := graph_service.GRAPH{
 		TagID:    tagId,
 		State:    state,
@@ -110,6 +110,10 @@ func GetGraphs(c *gin.Context) {
 	data := make(map[string]interface{})
 	data["lists"] = ipfsCids
 	data["total"] = total
+	data["page"] = page
+	data["page_size"] = service.PageSize
+	data["tag_id"] = service.TagID
+	data["state"] = service.State
 
 	appG.Response(http.StatusOK, e.SUCCESS, data)
 }

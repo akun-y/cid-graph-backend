@@ -14,6 +14,8 @@ type GRAPH struct {
 
 	PageNum  int
 	PageSize int
+
+	Total int
 }
 
 func (a *GRAPH) GetGraphKey() string {
@@ -41,6 +43,8 @@ func (a *GRAPH) GetGraphsKey() string {
 	if a.PageSize > 0 {
 		keys = append(keys, strconv.Itoa(a.PageSize))
 	}
-
+	if a.Total > 0 {
+		keys = append(keys, strconv.Itoa(a.Total))
+	}
 	return strings.Join(keys, "_")
 }

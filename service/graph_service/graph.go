@@ -112,10 +112,11 @@ func (a *GRAPH) GetAll() ([]*models.GRAPH_DATA, error) {
 	var (
 		graphs, cacheGraphs []*models.GRAPH_DATA
 	)
-
+	total := models.GraphTotal()
 	cache := cache_service.GRAPH{
 		TagID: a.TagID,
-		//State: a.State,
+		State: a.State,
+		Total: total,
 
 		PageNum:  a.PageNum,
 		PageSize: a.PageSize,

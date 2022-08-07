@@ -13,7 +13,7 @@ $ go get github.com/akun-y/cid-graph-backend
 
 ### Ready
 
-Create a **ipfs-cid-graph database** and import [SQL](https://github.com/akun-y/cid-graph-backend/blob/master/docs/sql/blog.sql)
+Create a **ipfs-cid-graph database** and import [SQL](https://github.com/akun-y/cid-graph-backend/blob/master/docs/sql/cid_graph.sql)
 
 ### Conf
 cp ./conf/app-ex.ini ./conf/app.ini

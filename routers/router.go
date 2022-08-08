@@ -16,13 +16,14 @@ import (
 	"go-gin-example/m/v2/pkg/upload"
 	"go-gin-example/m/v2/routers/api"
 	v1 "go-gin-example/m/v2/routers/api/v1"
+	v2 "go-gin-example/m/v2/routers/api/v2"
 
 	"github.com/gin-contrib/cors"
 )
 
 // InitRouter initialize routing information
 func InitRouter() *gin.Engine {
-	
+
 	r := gin.New()
 	r.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"*"},
@@ -74,6 +75,14 @@ func InitRouter() *gin.Engine {
 		apiv1.GET("/cid/:id", v1.GetCIDByID)
 		apiv1.POST("/cid", v1.AddCID)
 	}
+	apiv2 := r.Group("/api/v2")
+	apiv2.Use(jwt.JWT())
+	{
+		apiv2.GET("/nfts", v2.GetMyNFTs)
+		apiv2.GET("/nft/:id", v2.GetNFTByID)
+		apiv2.POST("/nft", v2.MintNFT)
+	}
+
 
 	return r
 }
